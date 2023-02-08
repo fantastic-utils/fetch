@@ -1,0 +1,9 @@
+coverage
+node_modules
+junit.xml
+.gitlab-ci.yml
+src
+__test__
+__beanchmark__
+jest.config.js
+.fatherrc.ts
