@@ -287,7 +287,7 @@ class Fetch {
  */
 const createFetchInstance = (opts = {}, settings = {}) => {
   /* istanbul ignore next */
-  if (!('fetch' in window)) {
+  if (typeof window === 'undefined' || !('fetch' in window)) {
     // eslint-disable-next-line
     console.error("fetch function doesn't detected in you environment");
     return null;
