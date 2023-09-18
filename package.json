@@ -1,6 +1,6 @@
 {
   "name": "@fantastic-utils/fetch",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "fantastic modern fetch library which have rich features",
   "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
@@ -37,5 +37,8 @@
     "jest-environment-jsdom": "^29.4.2",
     "nock": "^13.3.0",
     "ts-jest": "^29.0.3"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.22.15"
   }
 }
