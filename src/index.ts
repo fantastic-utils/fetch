@@ -156,7 +156,7 @@ class Fetch {
     };
   }
 
-  get(url: string, opts: FetchOpts, respType: RESP_TYPE) {
+  get(url: string, opts: FetchOpts = {}, respType: RESP_TYPE) {
     let nUrl = url;
     if (opts.body) {
       const params = opts.body;
@@ -194,7 +194,7 @@ class Fetch {
    *
    * @returns {Promise} The request promise
    */
-  fetch(url: string, options: FetchOpts, respType: RESP_TYPE) {
+  fetch(url: string, options: FetchOpts = {}, respType: RESP_TYPE) {
     // const respContentType = respType || this.defaultRespType;
     const opts = {
       url,
