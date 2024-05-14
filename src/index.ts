@@ -195,7 +195,7 @@ class Fetch {
    * @returns {Promise} The request promise
    */
   fetch(url: string, options: FetchOpts = {}, respType: RESP_TYPE) {
-    // const respContentType = respType || this.defaultRespType;
+    const respContentType = respType || this.defaultRespType;
     const opts = {
       url,
       ...this.defaultOpts,
@@ -258,7 +258,7 @@ class Fetch {
             statusText: resp.statusText,
           });
         }
-        return resp[respType]().then((data: any) => ({
+        return resp[respContentType]().then((data: any) => ({
           data,
           headers: resp.headers,
         }));
