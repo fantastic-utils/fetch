@@ -79,7 +79,8 @@ interface Fetch {
 let canAbortFetch = false;
 // Window cannot be used in web worker
 try {
-  canAbortFetch = 'AbortController' in window;
+  const runtimeEnv = typeof window === 'undefined' ? global : window;
+  canAbortFetch = 'AbortController' in (runtimeEnv || {});
 } catch (_) {
   canAbortFetch = false;
 }
