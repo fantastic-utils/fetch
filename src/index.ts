@@ -74,13 +74,25 @@ interface Fetch {
 }
 
 /**
+ * get Api whether available in runtime environment or not.
+ * 
+ * @param apiName The detect api name
+ * @returns {boolean} 
+ */
+const isApiValid = (apiName: string) => {
+  const runtimeEnv = typeof window === 'undefined' ? global : window;
+  return apiName in (runtimeEnv || {});
+};
+
+/**
  * Detect weather
  */
 let canAbortFetch = false;
 // Window cannot be used in web worker
 try {
-  const runtimeEnv = typeof window === 'undefined' ? global : window;
-  canAbortFetch = 'AbortController' in (runtimeEnv || {});
+  // const runtimeEnv = typeof window === 'undefined' ? global : window;
+  // canAbortFetch = 'AbortController' in (runtimeEnv || {});
+  canAbortFetch = isApiValid('AbortController');
 } catch (_) {
   canAbortFetch = false;
 }
@@ -288,9 +300,15 @@ class Fetch {
  */
 const createFetchInstance = (opts = {}, settings = {}) => {
   /* istanbul ignore next */
-  if (typeof window === 'undefined' || !('fetch' in window)) {
+  if (!isApiValid('fetch')) {
     // eslint-disable-next-line
-    console.error("fetch function doesn't detected in you environment");
+    console.error("fetch function doesn't detected in you environment, you can add a `fetch` polyfill first!");
+    return null;
+  }
+
+  if (!isApiValid('Proxy')) {
+    // eslint-disable-next-line
+    console.error("This lib need `Proxy` api! doesn't detected!");
     return null;
   }
 

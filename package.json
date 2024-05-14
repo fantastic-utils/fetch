@@ -1,14 +1,14 @@
 {
   "name": "@fantastic-utils/fetch",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "fantastic modern fetch library which have rich features",
   "main": "dist/umd/index.js",
-  "module": "dist/esm/index.js",
+  "module": "dist/esm/index.mjs",
   "sideEffects": "flag",
   "scripts": {
     "dev": "father dev",
     "test": "jest",
-    "build": "father build",
+    "build": "father build && mv ./dist/esm/index.js ./dist/esm/index.mjs",
     "prepublishOnly": "father doctor && npm run build"
   },
   "keywords": [
